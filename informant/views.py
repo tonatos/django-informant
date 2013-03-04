@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect, \
     HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404
 from django.template import Template, Context
-
+from django.template.loaders.app_directories import Loader
 
 from informant.models import Recipient, Newsletter
 from informant.forms import SubscribleNewsForm
@@ -84,5 +84,9 @@ def preview(request, pk):
         'STATIC_URL': settings.STATIC_URL
     })
     t = Template(newsletter.content)
+
+    l = Loader()
+    template = l.load_template_source('informant/mail/newsletter.html')[0]
+    t = Template(template)
 
     return HttpResponse(t.render(c))

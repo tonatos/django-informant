@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {% blocktrans %}If you cannot see this e-mail correctly, please continue here:{% endblocktrans %}
 {{ newsletter.get_domain_url }}?utm_source=newsletter&utm_medium=email&utm_campaign={{ newsletter.subject|slugify }}
 

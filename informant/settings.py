@@ -5,6 +5,9 @@ from django.core.exceptions import ImproperlyConfigured
 NEWSLETTER_RICHTEXT_WIDGET = \
     getattr(django_settings, "NEWSLETTER_RICHTEXT_WIDGET", "")
 
+SUBJECT = \
+    getattr(django_settings, "NEWSLETTER_SUBJECT", "")
+
 RICHTEXT_WIDGET = None
 if NEWSLETTER_RICHTEXT_WIDGET:
     module, attr = NEWSLETTER_RICHTEXT_WIDGET.rsplit(".", 1)
