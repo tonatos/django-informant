@@ -8,10 +8,11 @@ from django.core.mail import EmailMultiAlternatives, get_connection
 from django.core.management.base import NoArgsCommand
 from django.template import Template, Context
 from django.template.loader import render_to_string
+from django.template.loaders.app_directories import Loader
 from django.utils import translation
 
 from informant.models import Recipient, Newsletter
-
+from informant.settings import *
 
 NEWSLETTER_EMAIL = settings.NEWSLETTER_EMAIL
 
@@ -42,12 +43,15 @@ class Command(NoArgsCommand):
                 'MEDIA_URL': settings.MEDIA_URL,
                 'STATIC_URL': settings.STATIC_URL
             })
+
             # Render parts
-            content_html_orig = Template(newsletter.content).render(c)
+            l = Loader()
+            template = l.load_template_source('informant/mail/newsletter.html')[0]
+            content_html_orig = Template(template).render(c)
             content_txt_orig = render_to_string('informant/mail/base.txt', c)
 
             # Recipients, who have not got newsletter
-            recipients = Recipient.objects.filter(sent=False, deleted=False)
+            recipients = newsletter.recipient.filter(sent=False, deleted=False)
 
             for recipient in recipients:
                 # Replace fake md5
@@ -56,7 +60,7 @@ class Command(NoArgsCommand):
 
                 # Send mail
                 msg = EmailMultiAlternatives(
-                    newsletter.subject,
+                    SUBJECT,
                     content_txt,
                     NEWSLETTER_EMAIL,
                     (recipient.email,)

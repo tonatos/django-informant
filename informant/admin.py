@@ -1,4 +1,6 @@
+from django import forms
 from django.contrib import admin
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.template.loaders.app_directories import Loader
 from django.utils.translation import ugettext_lazy as _
 
@@ -21,16 +23,30 @@ if RICHTEXT_WIDGET and RICHTEXT_WIDGET.__name__ == "ImperaviWidget":
             'Imperavi WYSIWYG text editor might not work.'
         )
 
+class NewsletterAdminForm(forms.ModelForm):
+
+    recipient = forms.ModelMultipleChoiceField(
+        queryset=Recipient.objects.filter(deleted=False),
+        initial=[obj.id for obj in Recipient.objects.filter(deleted=False)],
+        label=_('Recipients'),
+        widget=FilteredSelectMultiple(_('Recipients'), False))
+
+    class Meta:
+        model = Newsletter
+
 class NewsletterAdmin(ModelAdmin):
     list_display = ('subject', 'date', 'sent', 'approved', 'preview_url',)
     ordering = ('-date',)
     actions = ['reset_sent_flag', ]
+    filter_horizontal = ('recipient',)
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        if db_field.name == 'content':
-            l = Loader()
-            kwargs['initial'] = l.load_template_source('informant/mail/newsletter.html')[0]
-        return super(NewsletterAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+    form = NewsletterAdminForm
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'recipient':
+            kwargs['queryset'] = Recipient.objects.filter(deleted=False)
+        return super(NewsletterAdmin, self).formfield_for_manytomany(
+            db_field, request, **kwargs)
 
     def reset_sent_flag(self, request, queryset):
         queryset.update(sent=False)
