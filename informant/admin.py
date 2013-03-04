@@ -4,8 +4,24 @@ from django.utils.translation import ugettext_lazy as _
 
 from informant.models import Newsletter, Recipient
 
+from .settings import RICHTEXT_WIDGET
 
-class NewsletterAdmin(admin.ModelAdmin):
+ModelAdmin = admin.ModelAdmin
+if RICHTEXT_WIDGET and RICHTEXT_WIDGET.__name__ == "ImperaviWidget":
+    # Imperavi works a little differently
+    # It's not just a field, it's also a media class and a method.
+    # To avoid complications, we reuse ImperaviStackedInlineAdmin
+    try:
+        from imperavi.admin import ImperaviAdmin
+        ModelAdmin = ImperaviAdmin
+    except ImportError:
+        # Log a warning when import fails as to aid debugging.
+        logger.warning(
+            'Error importing ImperaviStackedInlineAdmin. '
+            'Imperavi WYSIWYG text editor might not work.'
+        )
+
+class NewsletterAdmin(ModelAdmin):
     list_display = ('subject', 'date', 'sent', 'approved', 'preview_url',)
     ordering = ('-date',)
     actions = ['reset_sent_flag', ]
