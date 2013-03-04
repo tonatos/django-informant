@@ -1,0 +1,131 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-20 16:46+0200\n"
+"PO-Revision-Date: 2009-02-06 10:50+0100\n"
+"Last-Translator: Jan Seifert <jan.seifert@centrumholdings.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:21
+msgid "Send again"
+msgstr "Отправить снова"
+
+#: models.py:11
+msgid "Subject"
+msgstr "Заголовок"
+
+#: models.py:12
+msgid "Content"
+msgstr "Контент"
+
+#: models.py:13
+msgid "Date"
+msgstr "Дата"
+
+#: models.py:14 models.py:44
+msgid "Sent"
+msgstr "Отправлена"
+
+#: models.py:15
+msgid "Approved"
+msgstr "Готова к отправке"
+
+#: models.py:18
+msgid "Newsletter"
+msgstr "Рассылка"
+
+#: models.py:19
+msgid "Newsletters"
+msgstr "Рассылки"
+
+#: models.py:38
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#: models.py:42
+msgid "Email"
+msgstr "E-mail"
+
+#: models.py:43
+msgid "Created"
+msgstr "Создано"
+
+#: models.py:45
+msgid "Deleted"
+msgstr "Удалено"
+
+#: models.py:46
+msgid "MD5"
+msgstr "MD5 хэш"
+
+#: models.py:49
+msgid "Recipient"
+msgstr "Подписчик"
+
+#: models.py:50
+msgid "Recipients"
+msgstr "Подписчики"
+
+#: urls.py:6
+msgid "subscribe"
+msgstr "подписаться"
+
+#: urls.py:9
+msgid "unsubscribe"
+msgstr "отписаться"
+
+#: urls.py:12
+msgid "preview"
+msgstr "предпросмотр"
+
+#: templates/informant/mail/base.html:3
+msgid "lang"
+msgstr "ru"
+
+#: templates/informant/mail/base.txt:1
+msgid "If you cannot see this e-mail correctly, please continue here:"
+msgstr "Если вы не видите это письмо правильно, то перейдите по этой ссылке:"
+
+#: templates/informant/mail/base.txt:4
+msgid ""
+"You are subscribed to our newsletter, if you do not wish to receive these "
+"information anymore, click on the unsubscribe link below:"
+msgstr ""
+"Вы подписаны на нашу рассылку, если вы больше не хотите больше получать  "
+"письма от нас, то перейдите по этой ссылке для того, чтобы отписаться:"
+
+#: templates/informant/management/subscribe_error.html:2
+msgid ""
+"Subscription to newsletter failed! Please check if the address is correct "
+"and try again."
+msgstr ""
+"Вам не удалось подписаться на нашу рассылку! Пожалуйста, прорьте ваш почтовый адрес "
+"и попробуйте еще раз."
+
+#: templates/informant/management/subscribe_ok.html:2
+#, python-format
+msgid ""
+"Thanks for subscription to our newsletter for your e-mail address <strong>"
+"%(email)s</strong>."
+msgstr ""
+"Спасибо, что вы подписались на нашу рассылку на адрес <strong>"
+"%(email)s</strong>."
+
+#: templates/informant/management/unsubscribed.html:2
+#, python-format
+msgid ""
+"Your e-mail address <strong>%(email)s</strong> have been removed from our "
+"newsletter contact database."
+msgstr ""
+"Ваш e-mail адрес <strong>%(email)s</strong> был удален из базы подписчиков "
+"и больше вы не будите получать от нас письма."
