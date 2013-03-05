@@ -31,7 +31,7 @@ class Command(NoArgsCommand):
         pat = re.compile(md5_mark)
 
         # Newsletters, which have approved and have not delivered
-        newsletters = Newsletter.objects.filter(approved=True, sent=False,
+        newsletters = Newsletter.objects.filter(approved=True, #sent=False,
                                                 date__lte=datetime.now())
 
         for newsletter in newsletters:
@@ -46,8 +46,9 @@ class Command(NoArgsCommand):
 
             # Render parts
             l = Loader()
-            template = l.load_template_source('informant/mail/newsletter.html')[0]
-            content_html_orig = Template(template).render(c)
+
+            #template = l.load_template_source('informant/mail/newsletter.html')
+            content_html_orig = render_to_string('informant/mail/newsletter.html', c)
             content_txt_orig = render_to_string('informant/mail/base.txt', c)
 
             # Recipients, who have not got newsletter

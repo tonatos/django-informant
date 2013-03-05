@@ -38,7 +38,7 @@ class NewsletterAdmin(ModelAdmin):
     list_display = ('subject', 'date', 'sent', 'approved', 'preview_url',)
     ordering = ('-date',)
     actions = ['reset_sent_flag', ]
-    filter_horizontal = ('recipient',)
+    filter_horizontal = ('recipient', 'news', )
 
     form = NewsletterAdminForm
 
@@ -54,7 +54,7 @@ class NewsletterAdmin(ModelAdmin):
 
 
 class RecipientAdmin(admin.ModelAdmin):
-    fields = ('email', 'sent', 'deleted',)
+    fields = ('email', 'name', 'sent', 'deleted',)
     list_display = ('email', 'sent', 'deleted', 'date', 'md5',)
     search_fields = ('email',)
 

@@ -2,4 +2,8 @@
 {% block content %}
     <h2>{{ newsletter.subject }}</h2>
     {{ newsletter.content|safe }}
+
+    {% for n in newsletter.news.all %}
+        {{n}}
+    {% endfor %}
 {% endblock %}

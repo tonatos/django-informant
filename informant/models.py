@@ -6,8 +6,11 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
+from news.models import NewsItem
+
 class Recipient(models.Model):
     email = models.EmailField(_('Email'))
+    name = models.CharField(_('Name'), max_length=255)
     date = models.DateTimeField(_('Created'))
     sent = models.BooleanField(_('Sent'), default=False)
     deleted = models.BooleanField(_('Deleted'), default=False)
@@ -43,6 +46,10 @@ class Newsletter(models.Model):
     approved = models.BooleanField(_('Approved'), default=False)
     recipient = models.ManyToManyField(Recipient, verbose_name=_('Recipients'),
                                        blank=True, null=True)
+
+    news = models.ManyToManyField(NewsItem, verbose_name=_('News in newsletter'),
+                                         blank=True, null=True)
+
 
     class Meta:
         verbose_name = _('Newsletter')

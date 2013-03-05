@@ -29,6 +29,10 @@ msgid "Content"
 msgstr "Контент"
 
 #: models.py:13
+msgid "Name"
+msgstr "Имя"
+
+#: models.py:13
 msgid "Date"
 msgstr "Дата"
 
@@ -67,6 +71,10 @@ msgstr "Удалено"
 #: models.py:46
 msgid "MD5"
 msgstr "MD5 хэш"
+
+#: models.py:46
+msgid "News in newsletter"
+msgstr "Новости в рассылку"
 
 #: models.py:49
 msgid "Recipient"

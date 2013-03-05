@@ -32,9 +32,8 @@ def subscribe(request):
                 r.date = None
                 r.save()
 
-            if not request.is_ajax():
-                url = f.cleaned_data['back_url']
-                return HttpResponseRedirect(url)
+            if f.cleaned_data['back_url'] is not u'':
+                return HttpResponseRedirect(f.cleaned_data['back_url'])
             else:
                 return render(
                     request,
@@ -83,10 +82,4 @@ def preview(request, pk):
         'MEDIA_URL': settings.MEDIA_URL,
         'STATIC_URL': settings.STATIC_URL
     })
-    t = Template(newsletter.content)
-
-    l = Loader()
-    template = l.load_template_source('informant/mail/newsletter.html')[0]
-    t = Template(template)
-
-    return HttpResponse(t.render(c))
+    return render(request, 'informant/mail/newsletter.html', c)
