@@ -31,7 +31,7 @@ class Command(NoArgsCommand):
         pat = re.compile(md5_mark)
 
         # Newsletters, which have approved and have not delivered
-        newsletters = Newsletter.objects.filter(approved=True, #sent=False,
+        newsletters = Newsletter.objects.filter(approved=True, sent=False,
                                                 date__lte=datetime.now())
 
         for newsletter in newsletters:
