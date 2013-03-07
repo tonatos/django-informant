@@ -76,6 +76,10 @@ msgstr "MD5 хэш"
 msgid "News in newsletter"
 msgstr "Новости в рассылку"
 
+#: models.py:46
+msgid "News in newsletter helptext"
+msgstr "Если вы ассоциируете новости с этой расссылкой, то вместо текста рассылки будет выводится содержимое новости. "
+
 #: models.py:49
 msgid "Recipient"
 msgstr "Подписчик"

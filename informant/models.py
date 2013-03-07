@@ -48,8 +48,8 @@ class Newsletter(models.Model):
                                        blank=True, null=True)
 
     news = models.ManyToManyField(NewsItem, verbose_name=_('News in newsletter'),
-                                         blank=True, null=True)
-
+                                         blank=True, null=True,
+                                         help_text = _('News in newsletter helptext'))
 
     class Meta:
         verbose_name = _('Newsletter')
