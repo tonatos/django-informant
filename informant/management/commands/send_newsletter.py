@@ -23,7 +23,7 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         translation.activate(settings.LANGUAGE_CODE)
 
-        site = Site.objects.get(id=settings.SITE_ID)
+        site = Site.objects.get_current()
         connection = get_connection()
 
         # Fake md5
@@ -31,7 +31,7 @@ class Command(NoArgsCommand):
         pat = re.compile(md5_mark)
 
         # Newsletters, which have approved and have not delivered
-        newsletters = Newsletter.objects.filter(approved=True, sent=False,
+        newsletters = Newsletter.objects.filter(approved=True, #sent=False,
                                                 date__lte=datetime.now())
 
         for newsletter in newsletters:
@@ -50,6 +50,12 @@ class Command(NoArgsCommand):
             #template = l.load_template_source('informant/mail/newsletter.html')
             content_html_orig = render_to_string('informant/mail/newsletter.html', c)
             content_txt_orig = render_to_string('informant/mail/base.txt', c)
+
+            # Replace relative media
+            content_html_orig = content_html_orig.replace(
+                settings.MEDIA_URL,
+                'http://%s%s' % (site.domain, settings.MEDIA_URL)
+            )
 
             # Recipients, who have not got newsletter
             recipients = newsletter.recipient.filter(sent=False, deleted=False)
