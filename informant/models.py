@@ -10,7 +10,7 @@ from news.models import NewsItem
 
 class Recipient(models.Model):
     email = models.EmailField(_('Email'))
-    name = models.CharField(_('Name'), max_length=255)
+    name = models.CharField(_('Name'), max_length=255,blank=True)
     date = models.DateTimeField(_('Created'))
     sent = models.BooleanField(_('Sent'), default=False)
     deleted = models.BooleanField(_('Deleted'), default=False)
