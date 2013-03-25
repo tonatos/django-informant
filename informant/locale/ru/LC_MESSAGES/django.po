@@ -121,7 +121,7 @@ msgid ""
 "Subscription to newsletter failed! Please check if the address is correct "
 "and try again."
 msgstr ""
-"Вам не удалось подписаться на нашу рассылку! Пожалуйста, прорьте ваш почтовый адрес "
+"Вам не удалось подписаться на нашу рассылку! Пожалуйста, проверьте ваш почтовый адрес "
 "и попробуйте еще раз."
 
 #: templates/informant/management/subscribe_ok.html:2
